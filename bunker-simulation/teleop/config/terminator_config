@@ -1,0 +1,23 @@
+[global_config]
+  suppress_multiple_term_dialog = True
+[keybindings]
+[profiles]
+  [[default]]
+    font = Monospace 9
+    scrollback_lines = 5000
+    use_system_font = False
+    title_use_system_font = False
+[layouts]
+  [[default]]
+    [[[child0]]]
+      order = 0
+      parent = ""
+      position = 0:0
+      size = 600, 600
+      type = Window
+    [[[terminal]]]
+      type = Terminal
+      parent = child0
+      order = 0
+      profile = default
+      command = echo -ne "\033]0;teleop-${DRONE_ID}\007"; /root/scripts/start_drone_driver.sh $DRONE_ID; bash

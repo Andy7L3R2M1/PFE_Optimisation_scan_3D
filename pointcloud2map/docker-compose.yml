@@ -1,0 +1,29 @@
+services:
+  octomap:
+    image: gitlab.polytech.umontpellier.fr:5050/eii/cohoma/pointcloud2map/octomap:main
+    command: /bin/bash -c "colcon build --packages-select octomap_server && source /root/ros_ws/install/setup.bash"
+    volumes:
+      - ./octomap/src:/root/ros_ws/src
+      - ./octomap/scripts:/root/ros_ws/scripts
+    environment:
+      - DRONE_ID=DT1
+    devices:
+      - /dev/dri:/dev/dri # hardware acceleration
+    ipc: host
+    network_mode: host
+
+  middleware:
+    image: gitlab.polytech.umontpellier.fr:5050/eii/cohoma/pointcloud2map/middleware:main
+    volumes:
+      - ./middleware/src:/root/ros_ws/src
+    environment:
+      - DRONE_ID=DT1
+      - DB_USER=postgres
+      - DB_PASSWORD=pwd
+      - DB_HOST=localhost
+      - DB_PORT=5432
+      - DB_NAME=ros_db
+    devices:
+      - /dev/dri:/dev/dri # hardware acceleration
+    ipc: host
+    network_mode: host

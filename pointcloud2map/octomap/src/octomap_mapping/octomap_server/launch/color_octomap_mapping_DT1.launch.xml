@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="octomap_server" exec="color_octomap_server_node" name="color_octomap_server_DT1">
+        <param name="resolution" value="0.05" />
+
+        <!-- fixed map frame (set to 'map' if SLAM or localization running!) -->
+        <param name="frame_id" value="DT1/odom" />
+
+        <!-- maximum range to integrate (speedup!) -->
+        <param name="sensor_model.max_range" value="8.0" />
+
+        <param name="height_map" value="false" />
+        <param name="colored_map" value="true" />
+
+        <!-- data source to integrate (PointCloud2) -->
+        <remap from="cloud_in" to="DT1/depth/points" />
+
+        <!-- data output (MarkerArray) -->
+        <remap from="occupied_cells_vis_array" to="DT1/occupied_cells_vis_array" />
+
+    </node>
+</launch>

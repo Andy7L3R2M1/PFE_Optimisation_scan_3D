@@ -1,0 +1,39 @@
+services:
+  gazebo:
+    image: gitlab.polytech.umontpellier.fr:5050/eii/ros/ros-gazebo:main
+    command: /bin/bash -c "colcon build --packages-select pol_bunker && source /root/ros_ws/install/setup.bash && source /usr/share/gazebo/setup.bash && ros2 launch pol_bunker bunker-sim2.launch.py"
+    volumes:
+      - ./gazebo/src:/root/ros_ws/src
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw # X11 display socket
+      - $HOME/.Xauthority:/root/.Xauthority:ro # X11 display credentials
+    environment:
+      - DISPLAY # X11 display
+      - QT_X11_NO_MITSHM=1 # Fix for QT apps
+      - DISPLAY=$DISPLAY # set X11 display value
+    privileged: true
+    devices:
+      - /dev/dri:/dev/dri # Hardware acceleration
+    ipc: host
+    network_mode: host
+  
+  teleop-DT1:
+    image: gitlab.polytech.umontpellier.fr:5050/eii/ros/ros-vanilla:main
+    volumes:
+      - ./teleop/scripts:/root/scripts
+      - ./teleop/config/terminator_config:/root/.config/terminator/config
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw # X11 display socket
+      - $HOME/.Xauthority:/root/.Xauthority:ro # X11 display credentials
+      - /dev:/dev # Devices
+    environment:
+      - DISPLAY # X11 display
+      - QT_X11_NO_MITSHM=1 # Fix for QT apps
+      - DISPLAY=$DISPLAY # set X11 display value
+      - DRONE_ID=DT1
+    privileged: true
+    devices:
+      - /dev/dri:/dev/dri # Hardware acceleration
+    device_cgroup_rules:
+      - 'c 13:* rmw' # joystick
+      - 'c 189:* rmw' # USB
+    ipc: host
+    network_mode: host

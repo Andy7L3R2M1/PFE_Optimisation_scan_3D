@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "5040fbf0-1967-44aa-8376-3a7d927d6ae0",
+		"name": "ply-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37015117",
+		"_collection_link": "https://cohoma.postman.co/workspace/Team-Workspace~e64083fb-d9b4-4ba0-8cca-39b28d72f3a0/collection/37015117-5040fbf0-1967-44aa-8376-3a7d927d6ae0?action=share&source=collection_link&creator=37015117"
+	},
+	"item": [
+		{
+			"name": "request_ply",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "x",
+							"value": "-10",
+							"type": "text"
+						},
+						{
+							"key": "y",
+							"value": "10",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/ply/request",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"ply",
+						"request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_ply",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/ply/done/-1_0.ply",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"ply",
+						"done",
+						"-1_0.ply"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_ply_list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/ply/files",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"ply",
+						"files"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_ply_list_done",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/ply/done",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"ply",
+						"done"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "manual",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "healthcheck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/flask-health-check",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"flask-health-check"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

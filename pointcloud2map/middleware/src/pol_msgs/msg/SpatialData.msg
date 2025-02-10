@@ -1,0 +1,1 @@
+SpatialPoint[] points
